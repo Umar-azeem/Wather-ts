@@ -1,63 +1,70 @@
-type WeatherCardProps = {
-  apiData: {
-    name?: string;
-    tempt?: number;
-    Feel?: number;
-    min?: number;
-    max?: number;
-    pressure?: number;
-    speed?: number;
-    humidity?: number;
-    kf?: number;
-  };
-  
-};
 import React from "react";
 
-const WeatherCard = ({apiData}:WeatherCardProps) => {
+interface WeatherItem {
+  dt: number;
+  main: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+    temp_kf?: number;
+  };
+  weather: {
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+  }[];
+  wind: {
+    speed: number;
+    deg: number;
+  };
+  dt_txt: string;
+}
+
+interface WeatherCardProps {
+  nearestTimeData?: WeatherItem; 
+}
+const WeatherCard: React.FC<WeatherCardProps> = ({ nearestTimeData }) => {
+  if (!nearestTimeData) {
+    return <p className="text-center text-gray-400">No weather data available</p>;
+  }
+
+  const { main, wind } = nearestTimeData;
+
   return (
-    <>
-      <div className=" text-black rounded-lg shadow-lg w-full">
-        <div className="grid grid-cols-3 gap-2 lg:gap-4 text-xs lg:text-sm">
-          <div className="flex  items-center">
-            <span className="mr-2">🌅</span>
-            <p>
-              Min_temp: <span className="text-gray-100">{apiData?.min}</span>
-            </p>
-          </div>
-          <div className="flex items-center">
-            <span className="mr-2">🌇</span>
-            <p>
-              Max-temp: <span className="text-gray-300">{apiData?.max}</span>
-            </p>
-          </div>
-          <div className="flex items-center">
-            <span className="mr-2">💧</span>
-            <p>
-              Humidity: <span className="text-gray-300">{apiData?.humidity}</span>
-            </p>
-          </div>
-          <div className="flex items-center">
-            <span className="mr-2">💨</span>
-            <p>
-              Wind Speed: <span className="text-gray-300">{apiData?.speed ?? "N/A"} km/h</span>
-            </p>
-          </div>
-          <div className="flex items-center">
-            <span className="mr-2">🌡</span>
-            <p>
-              Pressure: <span className="text-gray-300">{apiData?.pressure} hPa</span>
-            </p>
-          </div>
-          <div className="flex items-center">
-            <span className="mr-2">☀️</span>
-            <p>
-              temp_kf: <span className="text-gray-300">{apiData?.kf}</span>
-            </p>
-          </div>
+    <div className="text-black rounded-lg shadow-lg w-full p-1">
+      <div className="grid grid-cols-3 gap-2 lg:gap-4 text-xs lg:text-sm">
+        <div className="flex items-center">
+          <span className="">🌅</span>
+          <p>Min Temp: <span className="text-white text-sm">{main.temp_min}°C</span></p>
         </div>
+        <div className="flex items-center">
+          <span className="">🌇</span>
+          <p>Max Temp: <span className="text-white text-sm">{main.temp_max}°C</span></p>
+        </div>
+        <div className="flex items-center">
+          <span className="">💧</span>
+          <p>Humidity: <span className="text-white text-sm">{main.humidity}%</span></p>
+        </div>
+        <div className="flex items-center">
+          <span className="">💨</span>
+          <p>Wind Speed: <span className="text-white text-sm">{wind.speed} km/h</span></p>
+        </div>
+        <div className="flex items-center">
+          <span className="">🌡</span>
+          <p>Pressure:<span className="text-white text-sm">{main.pressure} hPa</span></p>
+        </div>
+        {main.temp_kf !== undefined && (
+          <div className="flex items-center">
+            <span className="">☀️</span>
+            <p>Temp KF:<span className="text-white text-sm">{main.temp_kf}</span></p>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

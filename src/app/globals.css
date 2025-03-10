@@ -2,8 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.custom-scrollbar {
+  scrollbar-width: thin; 
+  scrollbar-color: #ffd700 #141414;
+
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #ffd700; 
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background:transparent;
+}
+
+
+
 :root {
-  --background: #ffffff;
+  --background: #020202;
   --foreground: #171717;
 }
 
