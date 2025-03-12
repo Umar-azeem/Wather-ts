@@ -88,13 +88,14 @@ const Search = () => {
 
   return (
     <>
-      <div className="flex flex-col p-4 w-full justify-center items-center mt-12">
-        <div className="flex mt-2 p-1 justify-between items-center max-w-md min-w-[150px] backdrop-blur-sm bg-blue-300/10 rounded-full">
-          <div>
+    
+      <div className="flex flex-col p-4 w-full justify-center items-center ">
+        <div className="flex mt-2 p-1 justify-between items-center max-w-lg min-w-[150px] backdrop-blur-sm bg-blue-300/10 rounded-full">
+          <div className="flex flex-col p-4  justify-center max-w-lg min-w-[150px] ">
             <p className="text-xl md:text-2xl font-bold">
               {filteredData.length > 0 ? `${filteredData[0].main.temp}°C` : "N/A"}
             </p>
-            <p className="text-sm text-gray-900">
+            <p className="text-md text-gray-900">
               Feels like:
               <span className="text-white">
                 {filteredData.length > 0 ? `${filteredData[0]?.main?.feels_like}°C` : "N/A"}
@@ -104,10 +105,10 @@ const Search = () => {
           <div className="text-yellow-500 text-xl md:text-2xl">☀️</div>
         </div>
         {error && <p className="text-red-500 mt-2">{error}</p>}
-        <p className="text-center text-lg mt-2">
+        {/* <p className="text-center text-lg mt-2">
           {cityName ? `Weather in ${cityName}` : "Search for a city"}
-        </p>
-        <div className="relative w-full max-w-md min-w-[150px] backdrop-blur-sm bg-white/10 rounded-full">
+        </p> */}
+        <div className="relative w-full max-w-lg min-w-[150px] backdrop-blur-sm bg-white rounded-full">
           <div className="relative">
             <input
               className="w-full bg-transparent placeholder:text-slate-400 text-black text-sm border border-slate-200 rounded-full pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
@@ -117,7 +118,7 @@ const Search = () => {
             />
             <button
               onClick={fetchData}
-              className="absolute top-1 right-1 flex items-center ml-1 mb-1  justify-center backdrop-blur-sm bg-white/10 w-8 h-8 rounded-full bg-slate-800 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              className="absolute top-1 right-1 flex items-center ml-1 mb-1  justify-center backdrop-blur-sm bg-black w-8 h-8 rounded-full border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none   active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="button"
             >
               <svg

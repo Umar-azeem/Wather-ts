@@ -1,5 +1,5 @@
 "use client";
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
 import { motion } from "framer-motion";
 import SnowfallComp from "./SnowfallComp";
 import Sun from "./Sun";
@@ -12,9 +12,9 @@ export default function Home() {
       <div className="absolute inset-0 z-20">
         <SnowfallComp />
       </div>
-      <div className="absolute -inset-0 z-10 w-full">
+      {/* <div className="absolute -inset-0 z-10 w-full">
         <Navbar />
-      </div>
+      </div> */}
       <div className="absolute z-30  w-full flex justify-center items-center h-screen">
         <Search />
       </div>
